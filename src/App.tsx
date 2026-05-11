@@ -17,33 +17,12 @@ export default function App() {
         {activeTab === 'progress' && <ProgressTab />}
       </main>
 
-      {/* Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-border-color z-50">
         <div className="max-w-md mx-auto flex justify-around items-center p-3">
-          <NavItem 
-            icon={<Home size={24} />} 
-            label="Início" 
-            isActive={activeTab === 'home'} 
-            onClick={() => setActiveTab('home')} 
-          />
-          <NavItem 
-            icon={<Dumbbell size={24} />} 
-            label="Treinos" 
-            isActive={activeTab === 'workouts'} 
-            onClick={() => setActiveTab('workouts')} 
-          />
-          <NavItem 
-            icon={<Apple size={24} />} 
-            label="Nutrição" 
-            isActive={activeTab === 'nutrition'} 
-            onClick={() => setActiveTab('nutrition')} 
-          />
-          <NavItem 
-            icon={<TrendingUp size={24} />} 
-            label="Evolução" 
-            isActive={activeTab === 'progress'} 
-            onClick={() => setActiveTab('progress')} 
-          />
+          <NavItem icon={<Home size={24} />} label="Inicio" isActive={activeTab === 'home'} onClick={() => setActiveTab('home')} />
+          <NavItem icon={<Dumbbell size={24} />} label="Treinos" isActive={activeTab === 'workouts'} onClick={() => setActiveTab('workouts')} />
+          <NavItem icon={<Apple size={24} />} label="Nutricao" isActive={activeTab === 'nutrition'} onClick={() => setActiveTab('nutrition')} />
+          <NavItem icon={<TrendingUp size={24} />} label="Evolucao" isActive={activeTab === 'progress'} onClick={() => setActiveTab('progress')} />
         </div>
       </nav>
     </div>
@@ -52,7 +31,7 @@ export default function App() {
 
 function NavItem({ icon, label, isActive, onClick }: { icon: ReactNode, label: string, isActive: boolean, onClick: () => void }) {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-300 ${
         isActive ? 'text-accent scale-110' : 'text-text-secondary hover:text-text-primary'
