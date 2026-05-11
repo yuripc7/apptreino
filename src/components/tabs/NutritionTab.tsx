@@ -4,17 +4,12 @@ import { ReactNode } from 'react';
 
 export function NutritionTab() {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="space-y-6 pt-4"
-    >
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 pt-4">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Nutrição</h1>
-        <p className="text-text-secondary text-sm">Acompanhamento diário (Cutting)</p>
+        <h1 className="text-2xl font-bold tracking-tight">Nutricao</h1>
+        <p className="text-text-secondary text-sm">Acompanhamento diario (Cutting)</p>
       </header>
 
-      {/* Calories Summary */}
       <section className="bg-surface border border-border-color rounded-2xl p-5">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -24,46 +19,21 @@ export function NutritionTab() {
               <span className="text-text-secondary text-sm">/ 2,200 kcal</span>
             </div>
           </div>
-          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-            <Flame size={24} />
-          </div>
+          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent"><Flame size={24} /></div>
         </div>
-
-        {/* Macros */}
         <div className="space-y-4">
-          <MacroBar 
-            icon={<Beef size={16} />} 
-            label="Proteína" 
-            current={140} 
-            target={180} 
-            color="bg-accent" 
-            unit="g" 
-          />
-          <MacroBar 
-            icon={<Wheat size={16} />} 
-            label="Carboidratos" 
-            current={120} 
-            target={150} 
-            color="bg-accent" 
-            unit="g" 
-          />
-          <MacroBar 
-            icon={<Droplet size={16} />} 
-            label="Gorduras" 
-            current={55} 
-            target={70} 
-            color="bg-accent" 
-            unit="g" 
-          />
+          <MacroBar icon={<Beef size={16} />} label="Proteina" current={140} target={180} color="bg-accent" unit="g" />
+          <MacroBar icon={<Wheat size={16} />} label="Carboidratos" current={120} target={150} color="bg-accent" unit="g" />
+          <MacroBar icon={<Droplet size={16} />} label="Gorduras" current={55} target={70} color="bg-accent" unit="g" />
         </div>
       </section>
 
       <section className="bg-surface border border-border-color rounded-2xl p-5">
-        <h3 className="font-semibold text-text-primary mb-4">Refeições de Hoje</h3>
+        <h3 className="font-semibold text-text-primary mb-4">Refeicoes de Hoje</h3>
         <div className="space-y-4">
-          <MealItem time="08:00" name="Café da Manhã" cals={450} />
-          <MealItem time="12:30" name="Almoço" cals={650} />
-          <MealItem time="16:00" name="Pré-treino" cals={300} />
+          <MealItem time="08:00" name="Cafe da Manha" cals={450} />
+          <MealItem time="12:30" name="Almoco" cals={650} />
+          <MealItem time="16:00" name="Pre-treino" cals={300} />
           <MealItem time="20:00" name="Jantar" cals={450} />
         </div>
       </section>
@@ -72,27 +42,15 @@ export function NutritionTab() {
 }
 
 function MacroBar({ icon, label, current, target, color, unit }: { icon: ReactNode, label: string, current: number, target: number, color: string, unit: string }) {
-  const percentage = Math.min((current / target) * 100, 100);
-  
+  const percentage = Math.min((current/target)*100, 100);
   return (
     <div>
       <div className="flex justify-between items-center mb-1.5">
-        <div className="flex items-center gap-1.5 text-text-secondary text-sm">
-          <span className="text-text-secondary">{icon}</span>
-          <span>{label}</span>
-        </div>
-        <div className="text-sm font-mono">
-          <span className="font-medium text-text-primary">{current}</span>
-          <span className="text-text-secondary"> / {target}{unit}</span>
-        </div>
+        <div className="flex items-center gap-1.5 text-text-secondary text-sm"><span>{icon}</span><span>{label}</span></div>
+        <div className="text-sm font-mono"><span className="font-medium text-text-primary">{current}</span><span className="text-text-secondary"> / {target}{unit}</span></div>
       </div>
       <div className="h-1 w-full bg-border-color rounded-full overflow-hidden">
-        <motion.div 
-          className={`h-full ${color} rounded-full`}
-          initial={{ width: 0 }}
-          animate={{ width: `${percentage}%` }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        />
+        <motion.div className={`h-full ${color} rounded-full`} initial={{ width: 0 }} animate={{ width: percentage+'%' }} transition={{ duration: 0.5, ease: 'easeOut' }} />
       </div>
     </div>
   );
@@ -101,10 +59,7 @@ function MacroBar({ icon, label, current, target, color, unit }: { icon: ReactNo
 function MealItem({ time, name, cals }: { time: string, name: string, cals: number }) {
   return (
     <div className="flex items-center justify-between py-2 border-b border-border-color last:border-0 last:pb-0">
-      <div className="flex items-center gap-3">
-        <span className="text-xs font-mono text-text-secondary">{time}</span>
-        <span className="text-sm font-medium text-text-primary">{name}</span>
-      </div>
+      <div className="flex items-center gap-3"><span className="text-xs font-mono text-text-secondary">{time}</span><span className="text-sm font-medium text-text-primary">{name}</span></div>
       <span className="text-sm text-text-secondary font-mono">{cals} kcal</span>
     </div>
   );
